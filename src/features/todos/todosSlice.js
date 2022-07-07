@@ -42,8 +42,8 @@ export const putTodo = createAsyncThunk(
 
 export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (id) => {
   try {
-    const { data } = await axios.delete(`${TODOS_URL}/${id}`);
-    return data.id;
+    await axios.delete(`${TODOS_URL}/${id}`);
+    return id;
   } catch (error) {
     return error.message;
   }
@@ -54,9 +54,6 @@ const todoSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // [allTodos.pending]: (state, action) => {
-    //   state.status = "loading";
-    // },
     [allTodos.fulfilled]: (state, action) => {
       state.todos = action.payload;
       state.status = "success";
