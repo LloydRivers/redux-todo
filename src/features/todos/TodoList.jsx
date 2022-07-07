@@ -15,7 +15,6 @@ const TodoList = () => {
   const todos = useSelector(selectTodos);
   const status = useSelector(selectStatus);
   const error = useSelector(selectError);
-  const [refetch, setRefetch] = useState(false);
 
   const handleChecked = (todo) => {
     console.log(typeof todo.completed);
@@ -28,7 +27,6 @@ const TodoList = () => {
   };
 
   const handleDelete = (id) => {
-    setRefetch(true);
     dispatch(deleteTodo(id));
   };
 
@@ -58,7 +56,7 @@ const TodoList = () => {
     if (status === "idle") {
       dispatch(allTodos());
     }
-  }, [dispatch, status, refetch]);
+  }, [dispatch, status]);
   return (
     <div>
       <h1>TODOS: </h1>
